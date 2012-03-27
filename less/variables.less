@@ -11,22 +11,26 @@
 // Grays
 // -------------------------
 @black:                 #000;
-@grayDarker:            #222;
-@grayDark:              #333;
-@gray:                  #555;
-@grayLight:             #999;
-@grayLighter:           #eee;
+@grayDarker:            #333;
+@grayDark:              #666;
+@gray:                  #999;
+@grayLight:             #b2b2b2;
+@grayLighter:           #e6e6e6;
 @white:                 #fff;
 
 
 // Accent colors
 // -------------------------
-@blue:                  #049cdb;
+@blueLight:             #e6f2f7;
+@blue:                  #0b99e0;
 @blueDark:              #0064cd;
-@green:                 #46a546;
-@red:                   #9d261d;
-@yellow:                #ffc40d;
-@orange:                #f89406;
+@greenDarker:           #0a2b1a;
+@green:                 #80ba27;
+@greenLight:            #daf2ce;
+@greenLighter:          #e7f7df;
+@red:                   #fb2828;
+@yellow:                #ffbb10;
+@orange:                #ff9500;
 @pink:                  #c3325f;
 @purple:                #7a43b6;
 
@@ -34,23 +38,23 @@
 // Scaffolding
 // -------------------------
 @bodyBackground:        @white;
-@textColor:             @grayDark;
+@textColor:             #4d4d4d;
 
 
 // Links
 // -------------------------
-@linkColor:             #08c;
-@linkColorHover:        darken(@linkColor, 15%);
+@linkColor:             #097ab2;
+@linkColorHover:        darken(@linkColor, 10%);
 
 
 // Typography
 // -------------------------
 @baseFontSize:          13px;
 @baseFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
-@baseLineHeight:        18px;
-@altFontFamily:         Georgia, "Times New Roman", Times, serif;
+@baseLineHeight:        20px;
+@altFontFamily:         "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-@headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
+@headingsFontFamily:    "Helvetica Neue", Helvetica, Arial, sans-serif; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    bold;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
@@ -67,22 +71,22 @@
 // -------------------------
 @btnBackground:                     @white;
 @btnBackgroundHighlight:            darken(@white, 10%);
-@btnBorder:                         darken(@white, 20%);
+@btnBorder:                         #ccc;
 
-@btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 15%);
+@btnPrimaryBackground:              #00aaff;
+@btnPrimaryBackgroundHighlight:     #0066cc;
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
 
-@btnSuccessBackground:              #62c462;
-@btnSuccessBackgroundHighlight:     #51a351;
+@btnSuccessBackground:              #98d916;
+@btnSuccessBackgroundHighlight:     #5ba611;
 
-@btnWarningBackground:              lighten(@orange, 15%);
-@btnWarningBackgroundHighlight:     @orange;
+@btnWarningBackground:              #ffbf00;
+@btnWarningBackgroundHighlight:     #ff8000;
 
-@btnDangerBackground:               #ee5f5b;
-@btnDangerBackgroundHighlight:      #bd362f;
+@btnDangerBackground:               #ff0000;
+@btnDangerBackgroundHighlight:      #cc0000;
 
 @btnInverseBackground:              @gray;
 @btnInverseBackgroundHighlight:     @grayDarker;
@@ -91,7 +95,7 @@
 // Forms
 // -------------------------
 @inputBackground:               @white;
-@inputBorder:                   #ccc;
+@inputBorder:                   @grayLight;
 @inputDisabledBackground:       @grayLighter;
 
 
@@ -99,9 +103,9 @@
 // -------------------------
 @dropdownBackground:            @white;
 @dropdownBorder:                rgba(0,0,0,.2);
-@dropdownLinkColor:             @grayDark;
-@dropdownLinkColorHover:        @white;
-@dropdownLinkBackgroundHover:   @linkColor;
+@dropdownLinkColor:             @linkColor;
+@dropdownLinkColorHover:        @linkColorHover;
+@dropdownLinkBackgroundHover:   @blueLight;
 
 
 
@@ -121,11 +125,13 @@
 @zindexModal:             1050;
 
 
+// Images path
+@imgPath: '../images/frontend/';
+
 // Sprite icons path
 // -------------------------
-@iconSpritePath:          "../img/glyphicons-halflings.png";
-@iconWhiteSpritePath:     "../img/glyphicons-halflings-white.png";
-
+@iconSpritePath:          "@{imgPath}bootstrap/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "@{imgPath}bootstrap/glyphicons-halflings-white.png";
 
 // Input placeholder text color
 // -------------------------
@@ -139,15 +145,15 @@
 
 // Navbar
 // -------------------------
-@navbarHeight:                    40px;
-@navbarBackground:                @grayDarker;
-@navbarBackgroundHighlight:       @grayDark;
+@navbarHeight:                    35px;
+@navbarBackground:                @green;
+@navbarBackgroundHighlight:       @white;
 
-@navbarText:                      @grayLight;
-@navbarLinkColor:                 @grayLight;
-@navbarLinkColorHover:            @white;
+@navbarText:                      @white;
+@navbarLinkColor:                 @white;
+@navbarLinkColorHover:            @greenDarker;
 @navbarLinkColorActive:           @navbarLinkColorHover;
-@navbarLinkBackgroundHover:       transparent;
+@navbarLinkBackgroundHover:       @white;
 @navbarLinkBackgroundActive:      @navbarBackground;
 
 @navbarSearchBackground:          lighten(@navbarBackground, 25%);
