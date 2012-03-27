@@ -127,22 +127,74 @@
 
 // PILLS
 // -----
-
-// Links rendered as pills
-.nav-pills > li > a {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  .border-radius(5px);
+.nav-pills {
+  font-size: 12px;
 }
 
-// Active state
-.nav-pills > .active > a,
-.nav-pills > .active > a:hover {
-  color: @white;
-  background-color: @linkColor;
-}
+  .nav-pills > li {
+    padding: 0 8px;
+  }
+
+    // Head
+    .nav-pills > li.head {
+      color: @gray;
+      padding: 0 8px 0 0;
+    }
+
+    // Links rendered as pills
+    .nav-pills > li > a {
+      .border-radius(10px);
+      @shadow: inset 0, 1px, 1px, #000;
+      .box-shadow(@shadow);
+      margin: 0;
+      padding: 3px 0;
+      
+      &:hover {
+        background: none;
+        text-decoration: underline;
+      }
+    }
+    
+    // Active
+    .nav-pills > li.active {
+      padding: 0;
+    }
+    
+      .nav-pills > li.active > a {
+        color: @white;
+        #gradient > .vertical(#097ab2, #0a9ccc);
+        @shadow: inset 0 1px 1px rgba(0,0,0,.2);
+        .box-shadow(@shadow);
+        font-weight: bold;
+        padding: 2px 20px 3px 8px;
+        position: relative;
+        text-shadow: 0 1px 0 rgba(0,0,0,.2);
+        &:hover {
+          background-color: @linkColorHover;
+          text-decoration: none;
+        }
+      }
+      
+      .nav-pills > li.active .arrow {
+        background: url('@{imgPath}main.png') no-repeat -240px -130px;
+        display: block;
+        height: 9px;
+        position: absolute;
+        right: 7px;
+        top: 6px;
+        width: 7px;
+      }
+      
+      .nav-pills > li.desc .arrow {
+        background-position: -240px -130px;
+      }
+      
+      .nav-pills > li.asc .arrow {
+        background-position: -250px -130px;
+      }
+    
+
+
 
 
 
