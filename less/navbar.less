@@ -16,18 +16,14 @@
 
 // Gradient is applied to it's own element because overflow visible is not honored by IE when filter is present
 .navbar-inner {
-  padding-left:  20px;
-  padding-right: 20px;
-  #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
-  .border-radius(4px);
-  @shadow: 0 1px 3px rgba(0,0,0,.25), inset 0 -1px 0 rgba(0,0,0,.1);
-  .box-shadow(@shadow);
+  background: #67ad1f url('@{imgPath}main.png') repeat-x 0 -50px;
+  //#gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
 }
 
 // Set width to auto for default container
 // We then reset it for fixed navbars in the #gridSystem mixin
 .navbar .container {
-  width: auto;
+  //width: auto;
 }
 
 // Navbar button for toggling navbar items in responsive layouts
@@ -205,7 +201,7 @@
   left: 0;
   display: block;
   float: left;
-  margin: 0 10px 0 0;
+  margin: 0;
 }
 .navbar .nav.pull-right {
   float: right; // redeclare due to specificity
@@ -216,37 +212,53 @@
 }
 
 // Links
-.navbar .nav > li > a {
+.navbar .nav > li > a,
+.navbar .nav > li > span {
   float: none;
-  padding: 10px 10px 11px;
-  line-height: 19px;
+  padding: 7px 7px 8px;
   color: @navbarLinkColor;
   text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+  font-weight: bold;
+  display: block;
 }
-// Hover
-.navbar .nav > li > a:hover {
+// Hover & Active items
+.navbar .nav > li > a:hover,
+.navbar .nav > li:hover > a,
+.navbar .nav .active {
   background-color: @navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover from .active
   color: @navbarLinkColorHover;
   text-decoration: none;
+  border-top: 3px solid @greenDarker;
+  margin-top: -2px;
+  padding-top: 6px;
+  text-shadow: none;
 }
 
-// Active nav items
-.navbar .nav .active > a,
-.navbar .nav .active > a:hover {
-  color: @navbarLinkColorActive;
-  text-decoration: none;
-  background-color: @navbarLinkBackgroundActive;
+// Home link
+.navbar .nav > .home > a,
+.navbar .nav > .home > span {
+  background-image: url('@{imgPath}main.png');
+  background-position: 0 -130px;
+  height: 20px;
+  text-indent: -100000px;
+  width: 21px;
+  
+  &:hover,
+  &.active {
+    background: @navbarLinkBackgroundHover url('@{imgPath}main.png') no-repeat -40px -130px;
+  }
 }
 
 // Dividers (basically a vertical hr)
 .navbar .divider-vertical {
   height: @navbarHeight;
   width: 1px;
-  margin: 0 9px;
+  margin: 0 -1px 0 0;
   overflow: hidden;
-  background-color: @navbarBackground;
+  background-color: @greenDarker;
   border-right: 1px solid @navbarBackgroundHighlight;
+  .opacity(15);
 }
 
 // Secondary (floated right) nav in topbar
@@ -259,32 +271,16 @@
 
 // Dropdown menus
 // --------------
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
 
 // Menu position and menu carets
 .navbar .dropdown-menu {
-  margin-top: 1px;
-  .border-radius(4px);
-  &:before {
-    content: '';
-    display: inline-block;
-    border-left:   7px solid transparent;
-    border-right:  7px solid transparent;
-    border-bottom: 7px solid #ccc;
-    border-bottom-color: @dropdownBorder;
-    position: absolute;
-    top: -7px;
-    left: 9px;
-  }
-  &:after {
-    content: '';
-    display: inline-block;
-    border-left:   6px solid transparent;
-    border-right:  6px solid transparent;
-    border-bottom: 6px solid @dropdownBackground;
-    position: absolute;
-    top: -6px;
-    left: 10px;
-  }
+  .border-radius(0);
+  margin-left: -1px;
+  border: 1px solid #80ba27;
+  border-top: 0;
 }
 // Menu position and menu caret support for dropups via extra dropup class
 .navbar-fixed-bottom .dropdown-menu {
@@ -307,9 +303,12 @@
 .navbar .nav .open.dropdown .caret {
   border-top-color: @white;
   border-bottom-color: @white;
-}
-.navbar .nav .active .caret {
   .opacity(100);
+}
+.navbar .nav a:hover .caret,
+.navbar .nav li:hover .caret {
+  border-top-color: @greenDarker;
+  border-bottom-color: @greenDarker;
 }
 
 // Remove background color from open dropdown
