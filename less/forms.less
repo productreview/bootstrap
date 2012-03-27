@@ -17,6 +17,14 @@ fieldset {
   border: 0;
 }
 
+.input-wrapper {
+  background: @grayLighter;
+  .border-radius(2px);
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px;
+}
+
 // Groups of fields with labels on top (legends)
 legend {
   display: block;
@@ -66,7 +74,7 @@ select,
   display: inline-block;
   width: 210px;
   height: @baseLineHeight;
-  padding: 4px;
+  padding: 5px;
   margin-bottom: 9px;
   font-size: @baseFontSize;
   line-height: @baseLineHeight;
@@ -206,14 +214,14 @@ input[type="hidden"] {
 
 input,
 textarea {
-  .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+  .box-shadow(inset 0 1px 1px rgba(0,0,0,.1));
   @transition: border linear .2s, box-shadow linear .2s;
   .transition(@transition);
 }
 input:focus,
 textarea:focus {
-  border-color: rgba(82,168,236,.8);
-  @shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  border-color: #22a4e5;
+  @shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,170,255,.5);
   .box-shadow(@shadow);
   outline: 0;
   outline: thin dotted \9; /* IE6-9 */
