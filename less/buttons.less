@@ -9,21 +9,22 @@
 .btn {
   display: inline-block;
   .ie7-inline-block();
-  padding: 4px 10px 4px;
+  padding: 5px 10px;
   margin-bottom: 0; // For input.btn
   font-size: @baseFontSize;
   line-height: @baseLineHeight;
-  color: @grayDark;
+  color: @grayDarker;
   text-align: center;
-  text-shadow: 0 1px 1px rgba(255,255,255,.75);
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
   vertical-align: middle;
   .buttonBackground(@btnBackground, @btnBackgroundHighlight);
   border: 1px solid @btnBorder;
-  border-bottom-color: darken(@btnBorder, 10%);
-  .border-radius(4px);
-  @shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  .border-radius(3px);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 0 rgba(0,0,0,.05);
   .box-shadow(@shadow);
   cursor: pointer;
+  font-family: @altFontFamily;
+  font-weight: bold;
 
   // Give IE7 some love
   .ie7-restore-left-whitespace();
@@ -31,10 +32,9 @@
 
 // Hover state
 .btn:hover {
-  color: @grayDark;
+  color: @grayDarker;
   text-decoration: none;
-  background-color: darken(@white, 10%);
-  background-position: 0 -15px;
+  background-position: 0 10px;
 
   // transition is only when going to hover, otherwise the background
   // behind the gradient (there for IE<=9 fallback) gets mismatched
@@ -50,7 +50,7 @@
 .btn.active,
 .btn:active {
   background-image: none;
-  @shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+  @shadow: inset 0 1px 1px rgba(0,0,0,.05), 0 0 0 rgba(0,0,0,0);
   .box-shadow(@shadow);
   background-color: darken(@white, 10%);
   background-color: darken(@white, 15%) e("\9");
@@ -94,7 +94,7 @@
 
 // Mini
 .btn-mini {
-  padding: 2px 6px;
+  padding: 3px 6px;
   font-size: @baseFontSize - 2px;
   line-height: @baseLineHeight - 4px;
 }
@@ -107,8 +107,6 @@
 // -------------------------
 .btn-primary,
 .btn-primary:hover,
-.btn-warning,
-.btn-warning:hover,
 .btn-danger,
 .btn-danger:hover,
 .btn-success,
@@ -122,7 +120,6 @@
 }
 // Provide *some* extra contrast for those who can get it
 .btn-primary.active,
-.btn-warning.active,
 .btn-danger.active,
 .btn-success.active,
 .btn-info.active,
@@ -160,9 +157,7 @@
 // Cross-browser Jank
 // --------------------------------------------------
 
-button.btn,
-input[type="submit"].btn {
-
+button.btn {
   // Firefox 3.6 only I believe
   &::-moz-focus-inner {
     padding: 0;
@@ -170,18 +165,47 @@ input[type="submit"].btn {
   }
 
   // IE7 has some default padding on button controls
-  *padding-top: 2px;
-  *padding-bottom: 2px;
+  *filter: chroma(color=#000000);//IE7 removes black border
+  *padding-top: 5px;
+  *padding-bottom: 5px;
+
   &.btn-large {
     *padding-top: 7px;
-    *padding-bottom: 7px;
-  }
-  &.btn-small {
-    *padding-top: 3px;
-    *padding-bottom: 3px;
+    *padding-bottom: 8px;
   }
   &.btn-mini {
-    *padding-top: 1px;
+    *padding-top: 3px;
+    *padding-bottom: 2px;
+  }
+}
+
+input[type="submit"].btn,
+input[type="button"].btn {
+
+  &::-moz-focus-inner {
+    padding: 1px 0;
+    border: 0;
+  }
+  
+  *padding-top: 4px;
+  *padding-bottom: 4px;
+  
+  &.btn-large {
+    *padding-top: 6px;
+    *padding-bottom: 7px;
+    
+    &::-moz-focus-inner {
+      padding: 0;
+      border: 0;
+    }
+  }
+  &.btn-mini {
+    *padding-top: 2px;
     *padding-bottom: 1px;
+    
+    &::-moz-focus-inner {
+      padding: 1px 0 0;
+      border: 0;
+    }
   }
 }
