@@ -24,11 +24,7 @@
 // Webkit-style focus
 // ------------------
 .tab-focus() {
-  // Default
-  outline: thin dotted #333;
-  // Webkit
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+  outline: none;
 }
 
 // Center-align a block level element
@@ -190,10 +186,46 @@
 // --------------------------------------------------
 
 // Border Radius
-.border-radius(@radius: 5px) {
+.border-radius(@radius: 3px) {
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;
           border-radius: @radius;
+}
+
+.border-radius-left (@radius: 3px) {
+    border-radius: @radius 0 0 @radius;
+    -moz-border-radius: @radius 0 0 @radius;
+    -webkit-border-radius: @radius 0 0 @radius;
+}
+
+.border-radius-right (@radius: 3px) {
+    border-radius: 0 @radius @radius 0;
+    -moz-border-radius: 0 @radius @radius 0;
+    -webkit-border-radius: 0 @radius @radius 0;
+}
+
+.border-radius-top-left (@radius: 3px) {
+    border-radius: @radius 0 0 0;
+    -moz-border-radius: @radius 0 0 0;
+    -webkit-border-radius: @radius 0 0 0;
+}
+
+.border-radius-top-right (@radius: 3px) {
+    border-radius: 0 @radius 0 0;
+    -moz-border-radius: 0 @radius 0 0;
+    -webkit-border-radius: 0 @radius 0 0;
+}
+
+.border-radius-bottom-right (@radius: 3px) {
+    border-radius: 0 0 @radius 0;
+    -moz-border-radius: 0 0 @radius 0;
+    -webkit-border-radius: 0 0 @radius 0;
+}
+
+.border-radius-bottom-left (@radius: 3px) {
+    border-radius: 0 0 0 @radius;
+    -moz-border-radius: 0 0 0 @radius;
+    -webkit-border-radius: 0 0 0 @radius;
 }
 
 // Drop shadows
@@ -324,8 +356,7 @@
 // Gradient Bar Colors for buttons and alerts
 .gradientBar(@primaryColor, @secondaryColor) {
   #gradient > .vertical(@primaryColor, @secondaryColor);
-  border-color: @secondaryColor @secondaryColor darken(@secondaryColor, 15%);
-  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+  border-color: darken(@secondaryColor, 5%);
 }
 
 // Gradients
@@ -342,7 +373,8 @@
     filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",@startColor,@endColor)); // IE9 and down
   }
   .vertical(@startColor: #555, @endColor: #333) {
-    background-color: mix(@startColor, @endColor, 60%);
+    background-color: @startColor;
+    *background-color: mix(@startColor, @endColor, 60%);//IE7
     background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
     background-image: -ms-linear-gradient(top, @startColor, @endColor); // IE10
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
@@ -427,7 +459,7 @@
   .reset-filter();
 
   // in these cases the gradient won't cover the background, so we override
-  &:hover, &:active, &.active, &.disabled, &[disabled] {
+  &:active, &.active, &.disabled, &[disabled] {
     background-color: @endColor;
   }
 
@@ -529,7 +561,7 @@
       .offsetX(@index - 1);
     }
     .offsetX (0) {}
-
+    
     .offset (@columns) {
       margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
     }
@@ -537,7 +569,12 @@
     .span (@columns) {
       width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
     }
-
+    
+    .thumbnail-square(@columns) {
+      height: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+      width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+    }
+    
     .row {
       margin-left: @gridGutterWidth * -1;
       .clearfix();
@@ -610,5 +647,22 @@
     .spanX (@gridColumns);
 
   }
-
+  
+  .input(@gridColumnWidth, @gridGutterWidth) {
+  
+      .spanX (@index) when (@index > 0) {
+        (~".thumbnail-square.span@{index}") { .span(@index); }
+        .spanX(@index - 1);
+      }
+      .spanX (0) {}
+  
+      .span(@columns) {
+        height: ((@gridColumnWidth) * @columns) + (@gridGutterWidth * (@columns - 1));
+        width: ((@gridColumnWidth) * @columns) + (@gridGutterWidth * (@columns - 1));
+      }
+  
+      // generate .spanX
+      .spanX (@gridColumns);
+  
+    }
 }
