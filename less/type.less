@@ -2,7 +2,7 @@
 // Headings, body text, lists, code, and more for a versatile and durable typography system
 // ----------------------------------------------------------------------------------------
 
-@import url(http://fonts.googleapis.com/css?family=Lato:900);
+@import url(http://fonts.googleapis.com/css?family=Lato:700);
 
 // BODY TEXT
 // ---------
@@ -68,9 +68,9 @@ h2 {
   }
 }
 h3 {
-  line-height: @baseLineHeight * 1.3;
+  line-height: @baseLineHeight;
   font-size: 18px;
-  margin-bottom: @baseLineHeight / 1.33;
+  margin-bottom: @baseLineHeight / 2;
   small {
     font-size: 14px;
   }
@@ -97,6 +97,9 @@ h5 {
   font-size: 14px;
   color: @greenDarker;
   line-height: 16px;
+  span {
+    font-weight: normal;
+  }
 }
 h6 {
   font-size: @baseFontSize;
@@ -262,4 +265,8 @@ small {
 }
 cite {
   font-style: normal;
+}
+.quiet {
+  color: @gray;
+  font-size: @baseFontSize - 1;
 }
