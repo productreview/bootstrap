@@ -78,7 +78,7 @@ select,
   margin-bottom: 9px;
   font-size: @baseFontSize;
   line-height: @baseLineHeight;
-  color: @gray;
+  color: @grayDark;
   border: 1px solid @inputBorder;
   .border-radius(3px);
 }
@@ -164,6 +164,11 @@ input[type="image"] {
 // Make textarea height behave
 textarea {
   height: auto;
+  resize: none;
+  font-size: @baseFontSize - 1;
+  line-height: @baseLineHeight - 4;
+  padding-bottom: 3px;
+  padding-top: 3px;
 }
 
 // Hidden inputs
@@ -223,6 +228,7 @@ textarea:focus {
   border-color: #22a4e5;
   @shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,170,255,.5);
   .box-shadow(@shadow);
+  color: @grayDarker;
   outline: 0;
   outline: thin dotted \9; /* IE6-9 */
 }
