@@ -7,25 +7,22 @@
 
 // Core
 .btn {
+  .buttonBackground(@btnBackground, @btnBackgroundHighlight);
+  border: 1px solid @btnBorder;
+  .border-radius();
+  @shadow: inset 0 1px 0 rgba(255,255,255,.25);
+  .box-shadow(@shadow);
+  color: @textColor;
+  cursor: pointer;
   display: inline-block;
   .ie7-inline-block();
-  padding: 5px 8px;
-  margin-bottom: 0; // For input.btn
-  font-size: @baseFontSize;
-  line-height: @baseLineHeight;
-  color: @grayDarker;
+  #font > .shorthand(@baseFontSize, bold, @baseLineHeight);
+  font-family: 'Lato';
+  margin: 0;
+  padding: 5px 9px;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,.25);
   vertical-align: middle;
-  .buttonBackground(@btnBackground, @btnBackgroundHighlight);
-  border: 1px solid @btnBorder;
-  border-bottom-color: darken(@btnBorder, 5%);
-  .border-radius(3px);
-  @shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.075);
-  .box-shadow(@shadow);
-  cursor: pointer;
-  font-family: @altFontFamily;
-  font-weight: bold;
 
   // Give IE7 some love
   .ie7-restore-left-whitespace();
@@ -33,9 +30,11 @@
 
 // Hover state
 .btn:hover {
-  color: @grayDarker;
-  text-decoration: none;
   background-position: 0 10px;
+  @shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 1px 0 rgba(0,0,0,.1);
+  .box-shadow(@shadow);
+  color: @textColor;
+  text-decoration: none;
 
   // transition is only when going to hover, otherwise the background
   // behind the gradient (there for IE<=9 fallback) gets mismatched
@@ -51,20 +50,16 @@
 .btn.active,
 .btn:active {
   background-image: none;
-  @shadow: inset 0 1px 1px rgba(0,0,0,.05), 0 0 0 rgba(0,0,0,0);
-  .box-shadow(@shadow);
-  background-color: darken(@white, 10%);
-  background-color: darken(@white, 15%) e("\9");
+  .box-shadow(none);
   outline: 0;
 }
 
 // Disabled state
 .btn.disabled,
 .btn[disabled] {
-  cursor: default;
   background-image: none;
-  background-color: darken(@white, 10%);
-  .opacity(65);
+  cursor: default;
+  .opacity(70);
   .box-shadow(none);
 }
 
@@ -104,8 +99,6 @@
 
 // Set text color
 // -------------------------
-.btn-primary,
-.btn-primary:hover,
 .btn-danger,
 .btn-danger:hover,
 .btn-success,
@@ -119,8 +112,25 @@
 }
 
 .btn-warning,
-.btn-warning:hover {
-  color: #40220d;
+.btn-warning:hover,
+.btn-warning:active {
+  border-color: @btnWarningBorder !important;
+  color: @brown;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active {
+  border-color: @btnPrimaryBorder !important;
+  color: @white;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+
+.btn-green,
+.btn-green:hover,
+.btn-green:active {
+  border-color: @btnGreenBorder !important;
+  color: @greenDark;
 }
 
 // Provide *some* extra contrast for those who can get it
@@ -158,6 +168,11 @@
   .buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
 }
 
+// Green
+.btn-green {
+  .buttonBackground(@btnGreenBackground, @btnGreenBackgroundHighlight);
+}
+
 
 // Cross-browser Jank
 // --------------------------------------------------
@@ -188,7 +203,7 @@ input[type="submit"].btn,
 input[type="button"].btn {
 
   &::-moz-focus-inner {
-    padding: 1px 0;
+    padding: 2px 0;
     border: 0;
   }
   
@@ -196,21 +211,41 @@ input[type="button"].btn {
   *padding-bottom: 4px;
   
   &.btn-large {
-    *padding-top: 6px;
-    *padding-bottom: 7px;
+    *padding-top: 8px;
+    *padding-bottom: 8px;
     
     &::-moz-focus-inner {
-      padding: 0;
+      padding: 0 0 1px 0;
       border: 0;
     }
   }
-  &.btn-mini {
+  &.btn-small {
     *padding-top: 2px;
     *padding-bottom: 1px;
     
     &::-moz-focus-inner {
-      padding: 1px 0 0;
+      padding: 2px 0 3px;
       border: 0;
     }
   }
-}4
+}
+
+
+
+
+
+
+
+.btn-xlarge {
+    font-family: @baseFontFamily;
+    font-size: 20px;
+    min-width: 60px;
+    padding: 4px 5px;
+}
+
+    .btn-xlarge span,
+    .btn-xlarge small {
+        display: block;
+        font-size: 12px;
+        font-weight: normal;
+    }
