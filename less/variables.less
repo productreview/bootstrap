@@ -11,33 +11,36 @@
 // Grays
 // -------------------------
 @black:                 #000;
-@grayDarker:            #333;
-@grayDark:              #666;
-@gray:                  #999;
-@grayLight:             #b2b2b2;
-@grayLighter:           #e6e6e6;
+@grayBlack:             #333;
+@grayDarker:            #666;
+@grayDark:              #999;
+@gray:                  #ccc;
+@grayLight:             #e5e5e5;
+@grayLighter:           #f2f2f2;
 @white:                 #fff;
 
 
 // Accent colors
 // -------------------------
-@blueLight:             #e6f2f7;
-@blue:                  #0b99e0;
-@blueDark:              #0064cd;
-@greenDarker:           #0a2b1a;
-@greenDark:             #113c2b;
+@greenDark:             #0a2b1a;
 @green:                 #80ba27;
-@greenBorder:           #add998;
-@greenLight:            #d0fabb;
-@greenLighter:          lighten(@greenLight, 10%);
-@red:                   #fb2828;
-@yellow:                #ffbb10;
-@orange:                #ff9500;
-@pink:                  #c3325f;
-@purple:                #7a43b6;
+@greenLight:            #caf2b6;
+@greenLighter:          #d9fac8;
+
+@blue:                  #0b99e0;
+@blueLight:             #e6f2f7;
+
 @pros:                  #008000;
 @cons:                  #cc0000;
+
 @brown:                 #40220d;
+
+@orange:                #ff9b0a;
+
+//@red:                   #fb2828;
+//@yellow:                #ffbb10;
+//@purple:                #7a43b6;
+//@pink:                  #c3325f;
 
 
 // Scaffolding
@@ -48,8 +51,8 @@
 
 // Links
 // -------------------------
-@linkColor:             #097ab2;
-@linkColorHover:        darken(@linkColor, 10%);
+@linkColor:             #0a74bf;
+@linkColorHover:        darken(@linkColor, 5%);
 
 
 // Typography
@@ -74,21 +77,21 @@
 
 // Buttons
 // -------------------------
-@btnBackground:                     @white;
-@btnBackgroundHighlight:            darken(@white, 10%);
-@btnBorder:                         #ccc;
+@btnBackground:                     #fafafa;
+@btnBackgroundHighlight:            #ececec;
+@btnBorder:                         @gray;
 
-@btnPrimaryBackground:              #0ea8ec;
-@btnPrimaryBackgroundHighlight:     #086ee0;
-@btnPrimaryBorder:                  #095eb2;
+@btnPrimaryBackground:              #0da4eb;
+@btnPrimaryBackgroundHighlight:     #0972e1;
+@btnPrimaryBorder:                  #0a64bf;
 
-@btnWarningBackground:              #ffbf00;
-@btnWarningBackgroundHighlight:     #ff8000;
-@btnWarningBorder:                  #d97716;
+@btnWarningBackground:              #ffc210;
+@btnWarningBackgroundHighlight:     @orange;
+@btnWarningBorder:                  #cc7700;
 
-@btnGreenBackground:                #e8fcdd;
-@btnGreenBackgroundHighlight:       darken(#caf2b6,5%);
-@btnGreenBorder:                    @greenBorder;
+@btnGreenBackground:                #e4f8da;
+@btnGreenBackgroundHighlight:       @greenLight;
+@btnGreenBorder:                    #add998;
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
@@ -106,7 +109,8 @@
 // Forms
 // -------------------------
 @inputBackground:               @white;
-@inputBorder:                   @grayLight;
+@inputBorder:                   @gray;
+@inputBorderFocus:              @blue;
 @inputDisabledBackground:       @grayLighter;
 
 
@@ -146,7 +150,7 @@
 
 // Input placeholder text color
 // -------------------------
-@placeholderText:         @grayLight;
+@placeholderText:         @grayDark;
 
 
 // Hr border color
@@ -162,7 +166,7 @@
 
 @navbarText:                      @white;
 @navbarLinkColor:                 @white;
-@navbarLinkColorHover:            @greenDarker;
+@navbarLinkColorHover:            @greenDark;
 @navbarLinkColorActive:           @navbarLinkColorHover;
 @navbarLinkBackgroundHover:       @white;
 @navbarLinkBackgroundActive:      @navbarBackground;
@@ -216,11 +220,3 @@
 // -------------------------
 @fluidGridColumnWidth:    6.382978723%;
 @fluidGridGutterWidth:    2.127659574%;
-
-
-
-
-
-// Comments
-// -------------------------
-@commentBackground:       #f5f5f5;

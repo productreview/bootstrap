@@ -19,7 +19,7 @@
   #font > .shorthand(@baseFontSize, bold, @baseLineHeight);
   font-family: 'Lato';
   margin: 0;
-  padding: 5px 9px;
+  padding: 3px 8px;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,.25);
   vertical-align: middle;
@@ -31,7 +31,7 @@
 // Hover state
 .btn:hover {
   background-position: 0 10px;
-  @shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 1px 0 rgba(0,0,0,.1);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.35);
   .box-shadow(@shadow);
   color: @textColor;
   text-decoration: none;
@@ -50,7 +50,8 @@
 .btn.active,
 .btn:active {
   background-image: none;
-  .box-shadow(none);
+  .box-shadow(@shadow);
+  @shadow: inset 0 1px 1px rgba(0,0,0,.1);
   outline: 0;
 }
 
@@ -79,7 +80,7 @@
 
 // Small
 .btn-small {
-  padding: 3px 6px;
+  padding: 1px 6px;
   font-size: @baseFontSize - 1px;
 }
   .btn-small [class^="icon-"] {
@@ -126,13 +127,6 @@
   text-shadow: 0 1px 0 rgba(0,0,0,.25);
 }
 
-.btn-green,
-.btn-green:hover,
-.btn-green:active {
-  border-color: @btnGreenBorder !important;
-  color: @greenDark;
-}
-
 // Provide *some* extra contrast for those who can get it
 .btn-primary.active,
 .btn-danger.active,
@@ -170,7 +164,18 @@
 
 // Green
 .btn-green {
-  .buttonBackground(@btnGreenBackground, @btnGreenBackgroundHighlight);
+    .buttonBackground(@btnGreenBackground, @btnGreenBackgroundHighlight);
+    border-color: @btnGreenBorder !important;
+    color: @greenDark;
+
+    &:hover {
+        .buttonBackground(#f5fef1, #dafac9);
+        color: @greenDark;
+    }
+
+    &:active {
+        background-image: none;
+    }
 }
 
 

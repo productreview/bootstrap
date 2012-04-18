@@ -84,7 +84,7 @@
     color: @color;
   }
   :focus::-webkit-input-placeholder {
-    color: lighten(@color, 10%);
+    color: @gray;
   }
 }
 
@@ -662,5 +662,23 @@
       // generate .spanX
       .spanX (@gridColumns);
   
+    }
+}
+
+
+
+
+.btn-green {
+    .buttonBackground(@btnGreenBackground, @btnGreenBackgroundHighlight);
+    border-color: @btnGreenBorder !important;
+    color: @greenDark;
+
+    &:hover {
+        .buttonBackground(#f5fef1, #dafac9);
+        color: @greenDark;
+    }
+
+    &:active {
+        background-image: none;
     }
 }

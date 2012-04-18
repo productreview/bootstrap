@@ -96,7 +96,7 @@
 
 // Give the tabs something to sit on
 .nav-tabs {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid @gray;
 }
 
 .nav-tabs > li {
@@ -111,31 +111,24 @@
 
 // Actual tabs (as links)
 .nav-tabs > li > a {
-  background: @greenLighter url('@{imgPath}main.png') repeat-x 0 -370px;
-  color: @greenDark;
-  font-weight: bold;
-  font-size: @baseFontSize + 1;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  line-height: @baseLineHeight;
-  border: 1px solid #b3d998;
-  border-bottom: 0;
-  &:hover {
-    background-color: @greenLighter;
-    background-position: 0 -470px;
-  }
+    .btn-green;
+    border: 1px solid;
+    border-bottom: 0;
+    font-size: @baseFontSize + 1;
+    font-weight: bold;
+    line-height: @baseLineHeight;
+    padding: 6px 0;
 }
+
 // Active state, and it's :hover to override normal :hover
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
-  background: @white;
-  border: 1px solid #ccc;
-  border-bottom: 0;
-  color: @greenDarker;
-  cursor: default;
-  font-size: @baseFontSize + 2;
-  padding-top: 7px;
-  padding-bottom: 8px;  
+    background: @white;
+    border-color: @gray !important;
+    border-bottom: 0;
+    color: @greenDark;
+    cursor: default;
+    padding: 8px 0 7px;
 }
 
 // PILLS

@@ -78,7 +78,7 @@ select,
   margin-bottom: 9px;
   font-size: @baseFontSize;
   line-height: @baseLineHeight;
-  color: @grayDark;
+  color: @textColor;
   border: 1px solid @inputBorder;
   .border-radius(3px);
 }
@@ -228,7 +228,7 @@ textarea:focus {
   border-color: #22a4e5;
   @shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,170,255,.5);
   .box-shadow(@shadow);
-  color: @grayDarker;
+  color: @grayBlack;
   outline: 0;
   outline: thin dotted \9; /* IE6-9 */
 }
@@ -343,7 +343,7 @@ select:focus:required:invalid {
 }
 
 // Placeholder text gets special styles; can't be bundled together though for some reason
-.placeholder(@grayLight);
+.placeholder(@grayDark);
 
 
 
@@ -352,7 +352,7 @@ select:focus:required:invalid {
 
 .help-block,
 .help-inline {
-  color: @gray; // lighten the text some for contrast
+  color: @grayDarker; // lighten the text some for contrast
 }
 
 .help-block {
