@@ -24,6 +24,7 @@
   background-image: url("@{iconSpritePath}");
   background-position: 14px 14px;
   background-repeat: no-repeat;
+  .hide-text;
 
   .ie7-restore-right-whitespace();
   *margin: 0 !important;
@@ -157,3 +158,23 @@
 .icon-folder-open        { background-position: -408px -120px; }
 .icon-resize-vertical    { background-position: -432px -119px; }
 .icon-resize-horizontal  { background-position: -456px -118px; }
+
+
+
+
+
+// MY ICONS
+// --------
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("@{imgPath}main.png");
+  background-position: 0 0;
+}
+
+.icon-th-large  { background-position: -260px -130px; }
+.icon-th-list   { background-position: -280px -130px; }
+
+.btn-small {
+  .icon-th-large  { background-position: -260px -150px; }
+  .icon-th-list   { background-position: -280px -150px; }
+}
