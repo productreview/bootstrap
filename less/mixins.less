@@ -24,7 +24,11 @@
 // Webkit-style focus
 // ------------------
 .tab-focus() {
+  // Default
   outline: none;
+  // Webkit
+  outline: none;
+  outline-offset: -2px;
 }
 
 // Center-align a block level element
@@ -97,13 +101,15 @@
   white-space: nowrap;
 }
 
-// New image replacement
+// CSS image replacement
 // -------------------------
-// Source: http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
+// Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
 .hide-text {
-  overflow: hidden;
-  text-indent: 100%;
-  white-space: nowrap;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
 }
 
 
@@ -193,42 +199,6 @@
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;
           border-radius: @radius;
-}
-
-.border-radius-left (@radius: 3px) {
-    border-radius: @radius 0 0 @radius;
-    -moz-border-radius: @radius 0 0 @radius;
-    -webkit-border-radius: @radius 0 0 @radius;
-}
-
-.border-radius-right (@radius: 3px) {
-    border-radius: 0 @radius @radius 0;
-    -moz-border-radius: 0 @radius @radius 0;
-    -webkit-border-radius: 0 @radius @radius 0;
-}
-
-.border-radius-top-left (@radius: 3px) {
-    border-radius: @radius 0 0 0;
-    -moz-border-radius: @radius 0 0 0;
-    -webkit-border-radius: @radius 0 0 0;
-}
-
-.border-radius-top-right (@radius: 3px) {
-    border-radius: 0 @radius 0 0;
-    -moz-border-radius: 0 @radius 0 0;
-    -webkit-border-radius: 0 @radius 0 0;
-}
-
-.border-radius-bottom-right (@radius: 3px) {
-    border-radius: 0 0 @radius 0;
-    -moz-border-radius: 0 0 @radius 0;
-    -webkit-border-radius: 0 0 @radius 0;
-}
-
-.border-radius-bottom-left (@radius: 3px) {
-    border-radius: 0 0 0 @radius;
-    -moz-border-radius: 0 0 0 @radius;
-    -webkit-border-radius: 0 0 0 @radius;
 }
 
 // Drop shadows
@@ -359,7 +329,8 @@
 // Gradient Bar Colors for buttons and alerts
 .gradientBar(@primaryColor, @secondaryColor) {
   #gradient > .vertical(@primaryColor, @secondaryColor);
-  border-color: darken(@secondaryColor, 5%);
+  border-color: @secondaryColor @secondaryColor darken(@secondaryColor, 15%);
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
 }
 
 // Gradients
@@ -376,9 +347,7 @@
     filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",@startColor,@endColor)); // IE9 and down
   }
   .vertical(@startColor: #555, @endColor: #333) {
-    background-color: @startColor;
-    background-color: mix(@startColor, @endColor, 60%)~"\9"; // IE7+
-    background-color: mix(@startColor, @endColor, 60%)~"\0/IE9"; // IE9+
+    background-color: mix(@startColor, @endColor, 60%);
     background-image: -moz-linear-gradient(top, @startColor, @endColor); // FF 3.6+
     background-image: -ms-linear-gradient(top, @startColor, @endColor); // IE10
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@startColor), to(@endColor)); // Safari 4+, Chrome 2+
@@ -462,9 +431,19 @@
   .gradientBar(@startColor, @endColor);
   .reset-filter();
 
+  &:hover {
+    background-color: @startColor !important;
+  }
+
   // in these cases the gradient won't cover the background, so we override
   &:active, &.active, &.disabled, &[disabled] {
-    background-color: @endColor;
+    background-color: @endColor !important;
+  }
+
+  // IE 7 + 8 can't handle box-shadow to show active, so we darken a bit ourselves
+  &:active,
+  &.active {
+    background-color: darken(@endColor, 10%) e("\9");
   }
 }
 
@@ -559,7 +538,7 @@
       .offsetX(@index - 1);
     }
     .offsetX (0) {}
-    
+
     .offset (@columns) {
       margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
     }
@@ -567,12 +546,7 @@
     .span (@columns) {
       width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
     }
-    
-    .thumbnail-square(@columns) {
-      height: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
-      width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
-    }
-    
+
     .row {
       margin-left: @gridGutterWidth * -1;
       .clearfix();
@@ -645,40 +619,22 @@
     .spanX (@gridColumns);
 
   }
-  
-  .input(@gridColumnWidth, @gridGutterWidth) {
-  
-      .spanX (@index) when (@index > 0) {
-        (~".thumbnail-square.span@{index}") { .span(@index); }
-        .spanX(@index - 1);
-      }
-      .spanX (0) {}
-  
-      .span(@columns) {
-        height: ((@gridColumnWidth) * @columns) + (@gridGutterWidth * (@columns - 1));
-        width: ((@gridColumnWidth) * @columns) + (@gridGutterWidth * (@columns - 1));
-      }
-  
-      // generate .spanX
-      .spanX (@gridColumns);
-  
-    }
+
 }
 
 
 
 
-.btn-green {
-    .buttonBackground(@btnGreenBackground, @btnGreenBackgroundHighlight);
-    border-color: @btnGreenBorder !important;
-    color: @greenDark;
 
-    &:hover {
-        .buttonBackground(#f5fef1, #dafac9);
-        color: @greenDark;
-    }
+// MY MIXINS
+// --------------------------------------------------
+.center {
+  text-align: center;
+}
 
-    &:active {
-        background-image: none;
-    }
+.wrap-to-center {
+  display: table-cell;
+  *display: block;
+  text-align: center;
+  vertical-align: middle;
 }

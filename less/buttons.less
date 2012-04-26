@@ -7,22 +7,24 @@
 
 // Core
 .btn {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-bottom: 0; // For input.btn
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  color: @textColor;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  vertical-align: middle;
   .buttonBackground(@btnBackground, @btnBackgroundHighlight);
   border: 1px solid @btnBorder;
-  .border-radius();
-  @shadow: inset 0 1px 0 rgba(255,255,255,.25);
+  // border-bottom-color: darken(@btnBorder, 10%);
+  .border-radius(3px);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(0,0,0,.07);
   .box-shadow(@shadow);
-  color: @textColor;
   cursor: pointer;
-  display: inline-block;
-  .ie7-inline-block();
-  #font > .shorthand(@baseFontSize, bold, @baseLineHeight);
   font-family: 'Lato';
-  margin: 0;
-  padding: 3px 8px;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(255,255,255,.25);
-  vertical-align: middle;
+  font-weight: 700;
 
   // Give IE7 some love
   .ie7-restore-left-whitespace();
@@ -30,15 +32,14 @@
 
 // Hover state
 .btn:hover {
-  background-position: 0 10px;
-  @shadow: inset 0 1px 0 rgba(255,255,255,.35);
-  .box-shadow(@shadow);
   color: @textColor;
   text-decoration: none;
+  // background-color: darken(@white, 10%);
+    background-position: 0 10px;
 
   // transition is only when going to hover, otherwise the background
   // behind the gradient (there for IE<=9 fallback) gets mismatched
-  .transition(background-position .1s linear);
+  .transition(all .1s linear);
 }
 
 // Focus state for keyboard and accessibility
@@ -48,20 +49,44 @@
 
 // Active state
 .btn.active,
-.btn:active {
-  background-image: none;
-  .box-shadow(@shadow);
+.btn:active,
+.open > .dropdown-toggle {
+  //background-image: none;
   @shadow: inset 0 1px 1px rgba(0,0,0,.1);
+  .box-shadow(@shadow) !important;
+  //background-color: darken(@white, 10%);
+  //background-color: darken(@white, 15%) e("\9");
   outline: 0;
+  background-position: 0 -10px;
 }
 
 // Disabled state
 .btn.disabled,
 .btn[disabled] {
-  background-image: none;
   cursor: default;
+  //background-image: none;
+  //background-color: darken(@white, 10%);
+  .opacity(80);
+  //.box-shadow(none);
+  background-position: 0 -10px;
+  @shadow: inset 0 1px 1px rgba(0,0,0,.1);
+  .box-shadow(@shadow) !important;
+}
+
+//Icon
+.btn [class^="icon-"] {
+  .square(18px);
+  margin-top: -1px;
   .opacity(70);
-  .box-shadow(none);
+}
+
+.btn:hover [class^="icon-"] {
+  .opacity(85);
+}
+
+.btn.active [class^="icon-"],
+.btn:active [class^="icon-"] {
+  .opacity(100);
 }
 
 
@@ -70,67 +95,96 @@
 
 // Large
 .btn-large {
-  padding: 8px 12px;
+  padding: 5px 10px 6px;
   font-size: @baseFontSize + 2px;
-  .border-radius(4px);
+  line-height: @baseLineHeight;
+  //.border-radius(5px);
 }
-  .btn-large [class^="icon-"] {
-    margin-top: 1px;
-  }
+.btn-large [class^="icon-"] {
+  margin-top: 1px;
+}
 
 // Small
 .btn-small {
-  padding: 1px 6px;
+  padding: 3px 6px;
   font-size: @baseFontSize - 1px;
+  line-height: @baseLineHeight - 5px;
 }
-  .btn-small [class^="icon-"] {
-    margin-top: -1px;
-  }
+.btn-small [class^="icon-"] {
+  .square(15px);
+  margin-top: 0;
+}
 
 // Mini
 .btn-mini {
-  .border-radius(2px);
   padding: 1px 5px;
   font-size: @baseFontSize - 2px;
+  line-height: @baseLineHeight - 4px;
 }
+
+// Xlarge
+.btn-xlarge {
+  padding: 5px 10px;
+  min-width: 60px;
+  font-size: @baseFontSize + 7px;
+  font-family: @baseFontFamily;
+  line-height: @baseLineHeight - 2px;
+}
+
+  .btn-xlarge span,
+  .btn-xlarge small {
+    display: block;
+    font-size: @baseFontSize;
+    font-weight: normal;
+    line-height: @baseLineHeight - 6px;
+    margin-top: 1px;
+  }
 
 
 // Alternate buttons
 // --------------------------------------------------
 
-// Set text color
+// Set text color, borders and shadows
 // -------------------------
 .btn-danger,
 .btn-danger:hover,
-.btn-success,
-.btn-success:hover,
 .btn-info,
 .btn-info:hover,
 .btn-inverse,
 .btn-inverse:hover {
-  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
   color: @white;
-}
-
-.btn-warning,
-.btn-warning:hover,
-.btn-warning:active {
-  border-color: @btnWarningBorder !important;
-  color: @brown;
 }
 
 .btn-primary,
-.btn-primary:hover,
-.btn-primary:active {
-  border-color: @btnPrimaryBorder !important;
+.btn-primary:hover{
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
   color: @white;
-  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+  border-color: @btnPrimaryBorder !important;
+    @shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.15);
+  .box-shadow(@shadow);
 }
 
+.btn-warning,
+.btn-warning:hover {
+  text-shadow: 0 1px 0 rgba(255,255,255,.25);
+  color: @brown;
+  border-color: @btnWarningBorder !important;
+  @shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.12);
+  .box-shadow(@shadow);
+}
+
+.btn-success,
+.btn-success:hover {
+  color: @greenDark !important;
+  border-color: @btnSuccessBorder !important;
+  @shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.07);
+  .box-shadow(@shadow);
+}
+
+
 // Provide *some* extra contrast for those who can get it
-.btn-primary.active,
 .btn-danger.active,
-.btn-success.active,
 .btn-info.active,
 .btn-inverse.active {
   color: rgba(255,255,255,.75);
@@ -162,27 +216,13 @@
   .buttonBackground(@btnInverseBackground, @btnInverseBackgroundHighlight);
 }
 
-// Green
-.btn-green {
-    .buttonBackground(@btnGreenBackground, @btnGreenBackgroundHighlight);
-    border-color: @btnGreenBorder !important;
-    color: @greenDark;
-
-    &:hover {
-        .buttonBackground(#f5fef1, #dafac9);
-        color: @greenDark;
-    }
-
-    &:active {
-        background-image: none;
-    }
-}
-
 
 // Cross-browser Jank
 // --------------------------------------------------
 
-button.btn {
+button.btn,
+input[type="submit"].btn {
+
   // Firefox 3.6 only I believe
   &::-moz-focus-inner {
     padding: 0;
@@ -190,67 +230,46 @@ button.btn {
   }
 
   // IE7 has some default padding on button controls
+  *padding-top: 3px;
+  *padding-bottom: 1px;
   *filter: chroma(color=#000000);//IE7 removes black border
-  *padding-top: 4px;
-  *padding-bottom: 4px;
-
   &.btn-large {
-    *padding-top: 7px;
-    *padding-bottom: 8px;
+    *padding-top: 3px;
+    *padding-bottom: 5px;
+  }
+  &.btn-small {
+    *padding-bottom: 2px;
   }
   &.btn-mini {
-    *padding-top: 3px;
-    *padding-bottom: 2px;
+    *padding-top: 1px;
+    *padding-bottom: 1px;
   }
 }
 
 input[type="submit"].btn,
 input[type="button"].btn {
-
   &::-moz-focus-inner {
     padding: 2px 0;
     border: 0;
   }
-  
-  *padding-top: 4px;
-  *padding-bottom: 4px;
-  
+  *padding-top: 2px;
+  *padding-bottom: 0;
+
   &.btn-large {
-    *padding-top: 8px;
-    *padding-bottom: 8px;
-    
+    *padding-top: 2px;
+    *padding-bottom: 4px;
     &::-moz-focus-inner {
-      padding: 0 0 1px 0;
-      border: 0;
+      padding-top: 1px;
+      padding-bottom: 0;
     }
   }
+
   &.btn-small {
     *padding-top: 2px;
     *padding-bottom: 1px;
-    
     &::-moz-focus-inner {
-      padding: 2px 0 3px;
+      padding: 0;
       border: 0;
     }
   }
 }
-
-
-
-
-
-
-
-.btn-xlarge {
-    font-family: @baseFontFamily;
-    font-size: 20px;
-    min-width: 60px;
-    padding: 4px 5px;
-}
-
-    .btn-xlarge span,
-    .btn-xlarge small {
-        display: block;
-        font-size: 12px;
-        font-weight: normal;
-    }
