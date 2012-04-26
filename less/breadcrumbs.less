@@ -2,13 +2,19 @@
 // -----------
 
 .breadcrumb {
-  background: url('@{imgPath}main.png') repeat-x left -210px;
+  border-bottom: 1px solid @grayLight;
+  margin: -19px 0 @baseLineHeight + 19px;
+}
+
+.breadcrumb ul {
   border: 0;
   height: 36px;
   list-style: none;
-  margin: 0 0 @baseLineHeight;
   overflow: hidden;
+  margin: 0;
   padding: 0;
+  position: relative;
+  bottom: -19px;
 }
 
   .breadcrumb li {
@@ -16,31 +22,31 @@
     float: left;
     height: 36px;
     line-height: 35px;
-      
+
     &:hover {
       background-position: -2px -330px;      
     }
-    
+
     &:first-child {
       background-position: left -290px;
-      
+
       &:hover {
         background-position: left -330px;
       }
     }
-    
+
     &:last-child,
     &.last-child {
       background-position: right -250px;
       padding: 0 15px 0 18px;
     }
-    
+
     &:last-child span,
     &.last-child span {
       display: none !important;
     }
   }
-       
+
     .breadcrumb li a {
       display: block;
       height: 35px;
@@ -51,7 +57,7 @@
       .breadcrumb li:first-child a {
         padding-left: 10px;
       }
-      
+
       .breadcrumb li:last-child a,
       .breadcrumb li.last-child a {
         padding: 0;
@@ -68,22 +74,12 @@
         width: 13px;
         z-index: 10;
       }
-      
         .breadcrumb li a:hover span {
           background-position: right -330px;
         }
 
-
-// Small breadcrumb
-small .breadcrumb {
-  background: none;
-  display: inline;
-  height: auto;
-  margin: 0;
+.breadcrumb-small {
+  font-size: @baseFontSize - 2px;
+  line-height: @baseLineHeight - 4px;
+  margin-top: 5px;
 }
-
-  small .breadcrumb li {
-    display: inline;
-    float: none;
-    line-height: auto;
-  }
