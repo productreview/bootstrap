@@ -111,24 +111,34 @@
 
 // Actual tabs (as links)
 .nav-tabs > li > a {
-    .btn-green;
-    border: 1px solid;
-    border-bottom: 0;
-    font-size: @baseFontSize + 1;
-    font-weight: bold;
-    line-height: @baseLineHeight;
-    padding: 6px 0;
+  .btn-success;
+  .box-shadow(none);
+  border: 1px solid;
+  border-bottom: 0;
+  font-size: @baseFontSize + 1;
+  font-weight: bold;
+  line-height: @baseLineHeight;
+  padding: 6px 0;
+  .transition(background .1s ease);
 }
+  .nav-tabs > li > a:hover {
+    background-color: #eeffe5;
+    background-position: 0 10px;
+  }
+  .nav-tabs > li > a:active {
+    background-color: @greenLight;
+    background-position: 0 -10px;
+  }
 
 // Active state, and it's :hover to override normal :hover
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
-    background: @white;
-    border-color: @gray !important;
-    border-bottom: 0;
-    color: @greenDark;
-    cursor: default;
-    padding: 8px 0 7px;
+  background: @white !important;
+  border-color: @gray !important;
+  border-bottom: 0;
+  color: @greenDark;
+  cursor: default;
+  padding: 8px 0 7px;
 }
 
 // PILLS
@@ -138,6 +148,7 @@
 }
 
   .nav-pills > li {
+    line-height: @baseLineHeight - 2px;
     padding: 0 5px;
   }
 
@@ -149,45 +160,53 @@
 
     // Links rendered as pills
     .nav-pills > li > a {
-      .border-radius(10px);
+      .border-radius(9px);
       @shadow: inset 0, 1px, 1px, #000;
       .box-shadow(@shadow);
       margin: 0;
-      padding: 3px 0;
+      padding: 0;
+      line-height: @baseLineHeight - 2px;
       
       &:hover {
         background: none;
         text-decoration: underline;
       }
     }
-    
+
     // Active
     .nav-pills > li.active {
       padding: 0;
     }
-    
       .nav-pills > li.active > a {
+        #gradient > .vertical(#0b9de5, #0b72d9);
         color: @white;
-        #gradient > .vertical(#097ab2, #0a9ccc);
-        @shadow: inset 0 1px 1px rgba(0,0,0,.2);
+        @shadow: inset 0 1px 1px #0b72d9;
         .box-shadow(@shadow);
         font-weight: bold;
-        padding: 2px 20px 3px 8px;
+        line-height: @baseLineHeight - 3px;
+        padding: 0 20px 1px 8px;
         position: relative;
         text-shadow: 0 1px 0 rgba(0,0,0,.2);
+        .transition(background .1s ease);
         &:hover {
-          background-color: @linkColorHover;
+          background-color: #0b9de5;
+          background-position: 0 9px;
+          text-decoration: none;
+        }
+        &:active {
+          background-color: #0b72d9;
+          background-position: 0 -9px;
           text-decoration: none;
         }
       }
-      
+
       .nav-pills > li.active .arrow {
         background: url('@{imgPath}main.png') no-repeat -240px -130px;
         display: block;
         height: 9px;
         position: absolute;
-        right: 7px;
-        top: 6px;
+        right: 8px;
+        top: 5px;
         width: 7px;
       }
       
