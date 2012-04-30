@@ -206,11 +206,10 @@
 .navbar .nav > li > a,
 .navbar .nav > li > span {
   float: none;
-  padding: 7px 7px 8px;
   // Vertically center the text given @navbarHeight
   @elementHeight: 20px;
-  padding: ((@navbarHeight - @elementHeight) / 2 - 1) 10px ((@navbarHeight - @elementHeight) / 2 + 1);
-  line-height: 19px;
+  padding: 7px 7px 8px;
+  line-height: @baseLineHeight;
   color: @navbarLinkColor;
   text-decoration: none;
   text-shadow: 0 1px 0 rgba(0,0,0,.25);
@@ -309,10 +308,11 @@
 .navbar .dropdown-menu {
   .border-radius(0);
   margin-left: -1px;
+  margin-top: 0;
   border: 1px solid #80ba27;
   border-top: 0;
   &:before {
-    content: '';
+    /*content: '';
     display: inline-block;
     border-left:   7px solid transparent;
     border-right:  7px solid transparent;
@@ -320,17 +320,17 @@
     border-bottom-color: @dropdownBorder;
     position: absolute;
     top: -7px;
-    left: 9px;
+    left: 9px;*/
   }
   &:after {
-    content: '';
+    /*content: '';
     display: inline-block;
     border-left:   6px solid transparent;
     border-right:  6px solid transparent;
     border-bottom: 6px solid @dropdownBackground;
     position: absolute;
     top: -6px;
-    left: 10px;
+    left: 10px;*/
   }
 }
 // Menu position and menu caret support for dropups via extra dropup class
@@ -354,14 +354,15 @@
 .navbar .nav li.dropdown.open .caret {
   border-top-color: @white;
   border-bottom-color: @white;
+  .opacity(100);
 }
 .navbar .nav li.dropdown.active .caret {
   .opacity(100);
 }
 .navbar .nav a:hover .caret,
 .navbar .nav li:hover .caret {
-  border-top-color: @greenDark;
-  border-bottom-color: @greenDark;
+  border-top-color: @greenDark !important;
+  border-bottom-color: @greenDark !important;
 }
 
 // Remove background color from open dropdown
