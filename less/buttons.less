@@ -8,26 +8,26 @@
 // Core
 .btn {
   display: inline-block;
+  .ie7-inline-block();
   padding: 3px 8px;
   margin-bottom: 0; // For input.btn
   font-size: @baseFontSize;
   line-height: @baseLineHeight;
+  *line-height: 20px;
   color: @textColor;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,.5);
   vertical-align: middle;
+  cursor: pointer;
   .buttonBackground(@btnBackground, @btnBackgroundHighlight);
   border: 1px solid @btnBorder;
+  *border: 0; // Remove the border to prevent IE7's black border on input:focus
   // border-bottom-color: darken(@btnBorder, 10%);
   .border-radius(3px);
-  @shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(0,0,0,.07);
-  .box-shadow(@shadow);
-  cursor: pointer;
+  .ie7-restore-left-whitespace(); // Give IE7 some love
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(0,0,0,.07)");
   font-family: 'Lato';
   font-weight: 700;
-
-  // Give IE7 some love
-  .ie7-restore-left-whitespace();
 }
 
 // Hover state
@@ -35,7 +35,8 @@
   color: @textColor;
   text-decoration: none;
   // background-color: darken(@white, 10%);
-    background-position: 0 10px;
+  *background-color: darken(@white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
+  background-position: 0 10px;
 
   // transition is only when going to hover, otherwise the background
   // behind the gradient (there for IE<=9 fallback) gets mismatched
@@ -49,14 +50,12 @@
 
 // Active state
 .btn.active,
-.btn:active,
-.open > .dropdown-toggle {
-  //background-image: none;
-  @shadow: inset 0 1px 1px rgba(0,0,0,.1);
-  .box-shadow(@shadow) !important;
+.btn:active {
   //background-color: darken(@white, 10%);
   //background-color: darken(@white, 15%) e("\9");
+  //background-image: none;
   outline: 0;
+  .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.1)");
   background-position: 0 -10px;
 }
 
@@ -64,13 +63,11 @@
 .btn.disabled,
 .btn[disabled] {
   cursor: default;
-  //background-image: none;
   //background-color: darken(@white, 10%);
+  //background-image: none;
   .opacity(80);
-  //.box-shadow(none);
+  .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.1)");
   background-position: 0 -10px;
-  @shadow: inset 0 1px 1px rgba(0,0,0,.1);
-  .box-shadow(@shadow) !important;
 }
 
 //Icon
@@ -111,8 +108,8 @@
   line-height: @baseLineHeight - 5px;
 }
 .btn-small [class^="icon-"] {
-  .square(15px);
   margin-top: 0;
+  .square(15px);
 }
 
 // Mini
@@ -146,40 +143,37 @@
 
 // Set text color, borders and shadows
 // -------------------------
+.btn-primary,
+.btn-primary:hover,
 .btn-danger,
 .btn-danger:hover,
 .btn-info,
 .btn-info:hover,
 .btn-inverse,
 .btn-inverse:hover {
-  text-shadow: 0 1px 0 rgba(0,0,0,.2);
   color: @white;
+  text-shadow: 0 1px 0 rgba(0,0,0,.2);
 }
 
 .btn-primary,
 .btn-primary:hover{
-  text-shadow: 0 1px 0 rgba(0,0,0,.2);
-  color: @white;
   border-color: @btnPrimaryBorder !important;
-    @shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.15);
-  .box-shadow(@shadow);
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.15)");
 }
 
 .btn-warning,
 .btn-warning:hover {
+  color: @brown !important;
   text-shadow: 0 1px 0 rgba(255,255,255,.25);
-  color: @brown;
   border-color: @btnWarningBorder !important;
-  @shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.12);
-  .box-shadow(@shadow);
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.12)");
 }
 
 .btn-success,
 .btn-success:hover {
   color: @greenDark !important;
   border-color: @btnSuccessBorder !important;
-  @shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.07);
-  .box-shadow(@shadow);
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.07)");
 }
 
 
@@ -192,6 +186,11 @@
 
 // Set the backgrounds
 // -------------------------
+.btn {
+  // reset here as of 2.0.3 due to Recess property order
+  border-color: #ccc;
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+}
 .btn-primary {
   .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
 }
@@ -232,7 +231,6 @@ input[type="submit"].btn {
   // IE7 has some default padding on button controls
   *padding-top: 3px;
   *padding-bottom: 1px;
-  *filter: chroma(color=#000000);//IE7 removes black border
   &.btn-large {
     *padding-top: 3px;
     *padding-bottom: 5px;

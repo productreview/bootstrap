@@ -21,6 +21,11 @@
   background-color: @grayLighter;
 }
 
+// Redeclare pull classes because of specifity
+.nav > .pull-right {
+  float: right;
+}
+
 // Nav headers (for dropdowns and lists)
 .nav .nav-header {
   display: block;
@@ -98,7 +103,6 @@
 .nav-tabs {
   border-bottom: 1px solid @gray;
 }
-
 .nav-tabs > li {
   margin-top: 2px;
 }
@@ -108,38 +112,38 @@
   margin-bottom: -1px;
   margin-top: 0;
 }
-
 // Actual tabs (as links)
 .nav-tabs > li > a {
-  .btn-success;
-  .box-shadow(none);
+  padding-top: 6px;
+  padding-bottom: 6px;
+  line-height: @baseLineHeight;
   border: 1px solid;
+  .border-radius(0);
+  .btn-success;
   border-bottom: 0;
   font-size: @baseFontSize + 1;
   font-weight: bold;
-  line-height: @baseLineHeight;
-  padding: 6px 0;
   .transition(background .1s ease);
-}
-  .nav-tabs > li > a:hover {
+  &:hover {
     background-color: #eeffe5;
     background-position: 0 10px;
   }
-  .nav-tabs > li > a:active {
+  &:active {
     background-color: @greenLight;
     background-position: 0 -10px;
   }
+}
 
 // Active state, and it's :hover to override normal :hover
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
+  color: @greenDark;
   background: @white !important;
   border-color: @gray !important;
-  border-bottom: 0;
-  color: @greenDark;
-  cursor: default;
   padding: 8px 0 7px;
+  cursor: default;
 }
+
 
 // PILLS
 // -----
@@ -160,13 +164,11 @@
 
     // Links rendered as pills
     .nav-pills > li > a {
-      .border-radius(9px);
-      @shadow: inset 0, 1px, 1px, #000;
-      .box-shadow(@shadow);
-      margin: 0;
       padding: 0;
+      margin: 0;
+      .border-radius(9px);
+      .box-shadow(~"inset 0, 1px, 1px, #000");
       line-height: @baseLineHeight - 2px;
-      
       &:hover {
         background: none;
         text-decoration: underline;
@@ -209,15 +211,14 @@
         top: 5px;
         width: 7px;
       }
-      
+
       .nav-pills > li.desc .arrow {
         background-position: -240px -130px;
       }
-      
+
       .nav-pills > li.asc .arrow {
         background-position: -250px -130px;
       }
-    
 
 
 
@@ -266,14 +267,11 @@
 // DROPDOWNS
 // ---------
 
-// Position the menu
-.nav-tabs .dropdown-menu,
-.nav-pills .dropdown-menu {
-  margin-top: 1px;
-  border-width: 1px;
+.nav-tabs .dropdown-menu {
+  .border-radius(0 0 5px 5px); // remove the top rounded corners here since there is a hard edge above the menu
 }
 .nav-pills .dropdown-menu {
-  .border-radius(4px);
+  .border-radius(4px); // make rounded corners match the pills
 }
 
 // Default dropdown links
@@ -310,14 +308,14 @@
 // -------------------------
 .nav-tabs .open .dropdown-toggle,
 .nav-pills .open .dropdown-toggle,
-.nav > .open.active > a:hover {
+.nav > li.dropdown.open.active > a:hover {
   color: @white;
   background-color: @grayLight;
   border-color: @grayLight;
 }
-.nav .open .caret,
-.nav .open.active .caret,
-.nav .open a:hover .caret {
+.nav li.dropdown.open .caret,
+.nav li.dropdown.open.active .caret,
+.nav li.dropdown.open a:hover .caret {
   border-top-color: @white;
   border-bottom-color: @white;
   .opacity(100);
@@ -342,14 +340,13 @@
   .clearfix();
 }
 .tab-content {
-  display: table; // prevent content from running below tabs
-  width: 100%;
+  overflow: auto; // prevent content from running below tabs
 }
 
 // Remove border on bottom, left, right
-.tabs-below .nav-tabs,
-.tabs-right .nav-tabs,
-.tabs-left .nav-tabs {
+.tabs-below > .nav-tabs,
+.tabs-right > .nav-tabs,
+.tabs-left > .nav-tabs {
   border-bottom: 0;
 }
 
@@ -367,22 +364,22 @@
 // BOTTOM
 // ------
 
-.tabs-below .nav-tabs {
+.tabs-below > .nav-tabs {
   border-top: 1px solid #ddd;
 }
-.tabs-below .nav-tabs > li {
+.tabs-below > .nav-tabs > li {
   margin-top: -1px;
   margin-bottom: 0;
 }
-.tabs-below .nav-tabs > li > a {
+.tabs-below > .nav-tabs > li > a {
   .border-radius(0 0 4px 4px);
   &:hover {
     border-bottom-color: transparent;
     border-top-color: #ddd;
   }
 }
-.tabs-below .nav-tabs .active > a,
-.tabs-below .nav-tabs .active > a:hover {
+.tabs-below > .nav-tabs > .active > a,
+.tabs-below > .nav-tabs > .active > a:hover {
   border-color: transparent #ddd #ddd #ddd;
 }
 
@@ -390,51 +387,51 @@
 // ------------
 
 // Common styles
-.tabs-left .nav-tabs > li,
-.tabs-right .nav-tabs > li {
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
   float: none;
 }
-.tabs-left .nav-tabs > li > a,
-.tabs-right .nav-tabs > li > a {
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
   min-width: 74px;
   margin-right: 0;
   margin-bottom: 3px;
 }
 
 // Tabs on the left
-.tabs-left .nav-tabs {
+.tabs-left > .nav-tabs {
   float: left;
   margin-right: 19px;
   border-right: 1px solid #ddd;
 }
-.tabs-left .nav-tabs > li > a {
+.tabs-left > .nav-tabs > li > a {
   margin-right: -1px;
   .border-radius(4px 0 0 4px);
 }
-.tabs-left .nav-tabs > li > a:hover {
+.tabs-left > .nav-tabs > li > a:hover {
   border-color: @grayLighter #ddd @grayLighter @grayLighter;
 }
-.tabs-left .nav-tabs .active > a,
-.tabs-left .nav-tabs .active > a:hover {
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover {
   border-color: #ddd transparent #ddd #ddd;
   *border-right-color: @white;
 }
 
 // Tabs on the right
-.tabs-right .nav-tabs {
+.tabs-right > .nav-tabs {
   float: right;
   margin-left: 19px;
   border-left: 1px solid #ddd;
 }
-.tabs-right .nav-tabs > li > a {
+.tabs-right > .nav-tabs > li > a {
   margin-left: -1px;
   .border-radius(0 4px 4px 0);
 }
-.tabs-right .nav-tabs > li > a:hover {
+.tabs-right > .nav-tabs > li > a:hover {
   border-color: @grayLighter @grayLighter @grayLighter #ddd;
 }
-.tabs-right .nav-tabs .active > a,
-.tabs-right .nav-tabs .active > a:hover {
+.tabs-right > .nav-tabs .active > a,
+.tabs-right > .nav-tabs .active > a:hover {
   border-color: #ddd #ddd #ddd transparent;
   *border-left-color: @white;
 }
