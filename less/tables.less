@@ -24,10 +24,11 @@ table {
   th,
   td {
     padding: 8px;
-    line-height: @baseLineHeight;
+    line-height: @baseLineHeight - 2px;
     text-align: left;
-    vertical-align: top;
+    vertical-align: middle;
     border-top: 1px solid @tableBorder;
+    font-size: @baseFontSize - 1px;
   }
   th {
     font-weight: bold;
@@ -125,8 +126,8 @@ table {
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
 .table-striped {
   tbody {
-    tr:nth-child(odd) td,
-    tr:nth-child(odd) th {
+    tr:nth-child(even) td,
+    tr:nth-child(even) th {
       background-color: @tableBackgroundAccent;
     }
   }
