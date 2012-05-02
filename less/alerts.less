@@ -13,9 +13,11 @@
 }
 
 .alert-heading {
-  border: 0;
-  color: inherit;
-  margin-top: 0;
+    border: 0;
+    color: inherit;
+    margin: 0;
+    line-height: @baseLineHeight;
+    text-transform: none;
 }
 
 // Adjust close link position
@@ -58,4 +60,11 @@
 }
 .alert-block p + p {
   margin-top: 5px;
+}
+
+
+.alert-small {
+    .border-radius(2px);
+    padding: 4px 9px;
+    margin-bottom: @baseLineHeight / 2;
 }
