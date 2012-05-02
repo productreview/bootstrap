@@ -640,12 +640,20 @@
 // MY MIXINS
 // --------------------------------------------------
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .wrap-to-center {
-  display: table-cell;
-  *display: block;
-  text-align: center;
-  vertical-align: middle;
+    display: table-cell;
+    *display: block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.error {
+    color: @errorText;
+}
+
+.success {
+    color: @successText;
 }
