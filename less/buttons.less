@@ -272,3 +272,32 @@ input[type="button"].btn {
     }
   }
 }
+
+
+// Create a button that look like a link
+// -------------------------------------
+.btn-none,
+.btn-none:active {
+    background: none !important;
+    border: 0 !important;
+    .border-radius(none) !important;
+    .box-shadow(none) !important;
+    color: @linkColor !important;
+    #font > .sans-serif();
+    margin: 0 !important;
+    padding: 0 !important;
+    .caret {
+        border-top-color: @linkColor !important;
+        border-width: 3px;
+        .opacity(100) !important;
+        margin: 9px 0 0 3px;
+    }
+}
+    .btn-none:hover,
+    .open .btn-none {
+        color: @linkColorHover !important;
+        text-decoration: underline;
+        .caret {
+            border-top-color: @linkColorHover !important;
+        }
+    }
