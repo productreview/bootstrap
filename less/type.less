@@ -106,9 +106,18 @@ h5 {
   }
 }
 h6 {
-  font-size: @baseFontSize;
-  color: @greenDark;
-  line-height: 16px;
+  border-bottom: 2px solid @grayLighter;
+  font-size: 11px;
+  color: @textColor;
+  line-height: 12px;
+  margin-bottom: @baseLineHeight *.4;
+  text-transform: uppercase;
+  span {
+    background: @white;
+    bottom: -3px;
+    position: relative;
+    padding: 0 2px 0 0;
+  }
 }
 
 // Page header
