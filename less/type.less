@@ -165,9 +165,18 @@ ol.unstyled {
   list-style-position: outside;
 }
 
+ul.inline {
+    .clearfix;
+    margin-bottom: @baseLineHeight;
+}
+    ul.inline li {
+        float: left;
+        margin: 0 2px 0 0;
+    }
+
 // Description Lists
 dl {
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @baseLineHeight / 2;
   margin-top: 0;
 }
 dt,
@@ -186,13 +195,13 @@ dd {
 .dl-horizontal {
   dt {
     float: left;
-    width: 120px;
+    width: 100px;
     clear: left;
     text-align: right;
     .text-overflow();
   }
   dd {
-    margin-left: 130px;
+    margin-left: 110px;
   }
 }
 .dt-left dt {
