@@ -64,6 +64,7 @@ label {
   margin-bottom: 5px;
   color: @grayBlack;
   font-weight: bold;
+  font-size: @baseFontSize + 1px;
 }
 
 // Inputs, Textareas, Selects
@@ -75,7 +76,7 @@ select,
   width: 210px;
   height: @baseLineHeight;
   padding: 5px;
-  margin-bottom: 9px;
+  margin-bottom: 5px;
   font-size: @baseFontSize;
   line-height: @baseLineHeight;
   color: @textColor;
@@ -185,8 +186,9 @@ input[type="hidden"] {
   min-height: 18px; // clear the floating input if there is no label text
   padding-left: 18px;
   line-height: 18px;
-  font-weight: normal;
   color: @textColor;
+  font-weight: normal;
+  font-size: @baseFontSize;
 }
 
 .radio input[type="radio"],
@@ -339,7 +341,7 @@ select:focus:required:invalid {
 // ------------
 
 .form-actions {
-  //padding: (@baseLineHeight - 1) 0 @baseLineHeight;
+  padding: @baseLineHeight 0;
   margin-top: @baseLineHeight;
   margin-bottom: @baseLineHeight;
   background-color: @formActionsBackground;
@@ -367,7 +369,8 @@ select:focus:required:invalid {
 
 .help-block,
 .help-inline {
-  color: @grayDarker; // lighten the text some for contrast
+  color: @grayDark; // lighten the text some for contrast
+  font-size: @baseFontSize - 1px;
 }
 
 .help-block {
@@ -549,7 +552,7 @@ select:focus:required:invalid {
 
 // Margin to space out fieldsets
 .control-group {
-  margin-bottom: @baseLineHeight / 2;
+  margin-bottom: @baseLineHeight;
 }
 
 // Legend collapses margin, so next element is responsible for spacing
