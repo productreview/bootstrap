@@ -159,14 +159,14 @@
 .btn-primary,
 .btn-primary:hover {
   border-color: @btnPrimaryBorder !important;
-  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.15)");
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 rgba(0,0,0,.1)");
 }
 
-.btn-warning,
-.btn-warning:hover {
+.btn-secondary,
+.btn-secondary:hover {
   color: @brown !important;
   text-shadow: 0 1px 0 rgba(255,255,255,.25);
-  border-color: @btnWarningBorder !important;
+  border-color: @btnSecondaryBorder !important;
   .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(0,0,0,.12)");
 }
 
@@ -194,6 +194,9 @@
 }
 .btn-primary {
   .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+}
+.btn-secondary {
+  .buttonBackground(@btnSecondaryBackground, @btnSecondaryBackgroundHighlight);
 }
 // Warning appears are orange
 .btn-warning {
