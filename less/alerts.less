@@ -21,6 +21,17 @@
     font-size: @baseFontSize + 1px;
 }
 
+.alert a,
+.alert a b,
+.alert a strong {
+    color: @linkColor;
+    font-weight: bold;
+    text-decoration: underline !important;
+    &:hover {
+        color: @linkColorHover;
+    }
+}
+
 // Adjust close link position
 .alert .close {
   position: relative;
@@ -64,6 +75,8 @@
 }
 
 
+// Alternate size
+// --------------
 .alert-small {
     .border-radius(2px);
     padding: 4px 9px;
