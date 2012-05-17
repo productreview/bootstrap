@@ -146,10 +146,7 @@ ol ol,
 ol ul {
   margin-bottom: 0;
 }
-ul {
-  list-style-image: url("@{imgPath}footer-bullet.gif");
-  list-style-position: inside;
-}
+ul {}
 ol {
   list-style: decimal;
 }
@@ -160,11 +157,12 @@ ul.unstyled,
 ol.unstyled {
   margin-left: 0;
   list-style: none;
-  list-style-image: none;
-  list-style-type: none;
-  list-style-position: outside;
 }
-
+ul.styled li {
+  background: url("@{imgPath}footer-bullet.gif") no-repeat left 10px;
+  list-style: none;
+  padding-left: 10px;
+}
 ul.inline {
     .clearfix;
     margin-bottom: @baseLineHeight;
