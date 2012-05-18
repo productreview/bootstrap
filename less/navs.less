@@ -190,10 +190,11 @@
         .box-shadow(@shadow);
         font-weight: bold;
         line-height: @baseLineHeight - 3px;
+        *line-height: @baseLineHeight;
         padding: 0 20px 1px 8px;
+        *padding: 0 15px 0 4px;
         position: relative;
         text-shadow: 0 1px 0 rgba(0,0,0,.2);
-        .transition(background .1s ease);
         &:hover {
           background-color: #0b9de5;
           background-position: 0 9px;
@@ -212,7 +213,9 @@
         height: 9px;
         position: absolute;
         right: 8px;
+        *right: 4px;
         top: 5px;
+        *top: 4px;
         width: 7px;
       }
 

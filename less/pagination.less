@@ -65,7 +65,15 @@
   text-align: right;
 }
 
-.pagination p {
-  float: left;
-  line-height: @baseLineHeight + 8;
+
+/***** IE7 Hacks *****/
+html* {
+    .pagination {
+        position: relative;
+    }
+        .pagination p {
+            line-height: @baseLineHeight + 8;
+            left: 0;
+            position: absolute;
+        }
 }
