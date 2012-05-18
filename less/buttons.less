@@ -13,7 +13,6 @@
   margin-bottom: 0; // For input.btn
   font-size: @baseFontSize;
   line-height: @baseLineHeight;
-  *line-height: 20px;
   color: @textColor;
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,.5);
@@ -21,7 +20,7 @@
   cursor: pointer;
   .buttonBackground(@btnBackground, @btnBackgroundHighlight);
   border: 1px solid @btnBorder;
-  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  //border: 0; // Remove the border to prevent IE7's black border on input:focus
   // border-bottom-color: darken(@btnBorder, 10%);
   .border-radius(3px);
   .ie7-restore-left-whitespace(); // Give IE7 some love
@@ -93,9 +92,9 @@
 
 // Large
 .btn-large {
-  padding: 5px 10px 6px;
+  padding: 5px 10px;
   font-size: @baseFontSize + 2px;
-  line-height: @baseLineHeight;
+  line-height: @baseLineHeight + 1px;
   //.border-radius(5px);
 }
 .btn-large [class^="icon-"] {
@@ -223,57 +222,37 @@
 // Cross-browser Jank
 // --------------------------------------------------
 
-button.btn,
-input[type="submit"].btn {
-
-  // Firefox 3.6 only I believe
-  &::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-  }
-
-  // IE7 has some default padding on button controls
-  *padding-top: 3px;
-  *padding-bottom: 1px;
-  &.btn-large {
-    *padding-top: 3px;
-    *padding-bottom: 5px;
-  }
-  &.btn-small {
-    *padding-bottom: 2px;
-  }
-  &.btn-mini {
-    *padding-top: 1px;
-    *padding-bottom: 1px;
-  }
-}
-
+/***** IE7 hack *****/
+ button.btn,
 input[type="submit"].btn,
 input[type="button"].btn {
-  &::-moz-focus-inner {
-    padding: 2px 0;
-    border: 0;
-  }
-  *padding-top: 2px;
-  *padding-bottom: 0;
-
-  &.btn-large {
-    *padding-top: 2px;
-    *padding-bottom: 4px;
-    &::-moz-focus-inner {
-      padding-top: 1px;
-      padding-bottom: 0;
+    *filter:chroma(color=#000000); /*removes extra black border*/
+    *padding: 2px 7px 0;
+    &.btn-small {
+        *padding: 2px 5px 1px;
     }
-  }
-
-  &.btn-small {
-    *padding-top: 2px;
-    *padding-bottom: 1px;
-    &::-moz-focus-inner {
-      padding: 0;
-      border: 0;
+    &.btn-large {
+        *padding: 1px 9px 4px;
     }
-  }
+}
+
+button.btn,
+input[type="submit"].btn,
+input[type="button"].btn {
+    /***** Firefox hacks *****/
+    &::-moz-focus-inner {
+        padding: 0;
+    }
+    &.btn-small {
+        &::-moz-focus-inner {
+            padding: 0;
+        }
+    }
+    &.btn-large {
+        &::-moz-focus-inner {
+            padding: 0px;
+        }
+    }
 }
 
 
