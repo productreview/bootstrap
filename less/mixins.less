@@ -439,7 +439,7 @@
 .buttonBackground(@startColor, @endColor) {
   // gradientBar will set the background to a pleasing blend of these, to support IE<=9
   .gradientBar(@startColor, @endColor);
-  *background-color: @endColor; /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  /*background-color: @endColor; Darken IE7 buttons by default so they stand out more given they won't have borders */
   .reset-filter();
   &:hover {
     background-color: @startColor;
@@ -448,7 +448,7 @@
   // in these cases the gradient won't cover the background, so we override
   &:active, &.active, &.disabled, &[disabled] {
     background-color: @endColor !important;
-    *background-color: darken(@endColor, 5%);
+    /*background-color: darken(@endColor, 5%);*/
   }
 
   // IE 7 + 8 can't handle box-shadow to show active, so we darken a bit ourselves
