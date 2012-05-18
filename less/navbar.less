@@ -216,6 +216,10 @@
   font-weight: bold;
   display: block;
 }
+html* .navbar .nav > li > a.dropdown-toggle{
+  padding-bottom: 11px; /*IE7*/
+}
+
 // Buttons
 .navbar .btn {
   display: inline-block;
@@ -311,6 +315,7 @@
   margin-top: 0;
   border: 1px solid @green;
   border-top: 0;
+  top: @navbarHeight;
   &:before {
     /*content: '';
     display: inline-block;
@@ -357,6 +362,7 @@
   .opacity(100);
   border-width: 3px;
   margin: 10px 0 0 5px;
+  *margin: 8px 0 0 5px;
 }
 .navbar .nav li.dropdown.active .caret {
   .opacity(100);
