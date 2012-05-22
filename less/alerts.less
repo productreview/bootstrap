@@ -21,6 +21,7 @@
     font-size: @baseFontSize + 1px;
 }
 
+/* Links */
 .alert a,
 .alert a b,
 .alert a strong {
@@ -31,6 +32,17 @@
         color: @linkColorHover;
     }
 }
+
+/* Buttons */
+.alert .btn {
+    color: @textColor !important;
+    text-decoration: none !important;
+    vertical-align: baseline;
+
+    &.btn-primary   { color: @white !important; }
+    &.btn-secondary { color: @brown !important; }
+}
+
 
 // Adjust close link position
 .alert .close {
