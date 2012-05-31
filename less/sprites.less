@@ -192,14 +192,21 @@
 // MY ICONS
 // --------
 .icon-arrow-right,
+.icon-minus,
+.icon-plus,
 .icon-star,
 .icon-th-large,
 .icon-th-list {
-  background-image: url("@{imgPath}main.png");
-  background-position: 0 0;
+    background-image: url("@{imgPath}main.png");
+}
+.icon-minus,
+.icon-plus {
+    .square(16px)
 }
 
 .icon-arrow-right   { background-position: -240px -140px; }
+.icon-minus         { background-position: -420px -130px; }
+.icon-plus          { background-position: -400px -130px; }
 .icon-star          { background-position: -241px -200px; } // 1px, 0 off
 .icon-th-large      { background-position: -260px -130px; }
 .icon-th-list       { background-position: -280px -130px; }
