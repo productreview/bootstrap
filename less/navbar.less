@@ -11,7 +11,7 @@
   *z-index: 2;
 
   overflow: visible;
-  margin-bottom: @baseLineHeight;
+  margin-bottom: @baseLineHeight * 1.5;
 }
 
 // Gradient is applied to it's own element because overflow visible is not honored by IE when filter is present
@@ -20,9 +20,10 @@
   padding-left:  20px;
   padding-right: 20px;
   //#gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
-  background: #67ad1f url('@{imgPath}main.png') repeat-x 0 -50px;
+  background: @grayLighter;
   .border-radius(0);
-  //.box-shadow(~"0 1px 3px rgba(0,0,0,.25), inset 0 -1px 0 rgba(0,0,0,.1)");
+  .box-shadow(~"inset 0 -1px 1px rgba(0,0,0,.05)");
+  border-bottom: 1px solid @gray;
 }
 
 // Set width to auto for default container
@@ -192,7 +193,7 @@
   left: 0;
   display: block;
   float: left;
-  margin: 0;
+  margin: 0 0 -1px;
 }
 .navbar .nav.pull-right {
   float: right; // redeclare due to specificity
@@ -208,16 +209,16 @@
   float: none;
   // Vertically center the text given @navbarHeight
   @elementHeight: 20px;
-  padding: 7px 7px 8px;
+  padding: 10px;
   line-height: @baseLineHeight;
   color: @navbarLinkColor;
   text-decoration: none;
-  text-shadow: 0 1px 0 rgba(0,0,0,.25);
-  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
   display: block;
+  cursor: pointer;
 }
 html* .navbar .nav > li > a.dropdown-toggle{
-  padding-bottom: 11px; /*IE7*/
+  padding-bottom: 13px; /*IE7*/
 }
 
 // Buttons
@@ -242,23 +243,7 @@ html* .navbar .nav > li > a.dropdown-toggle{
   background-color: @navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover from .active
   color: @navbarLinkColorHover;
   text-decoration: none;
-  border-top: 3px solid @greenDark;
-  margin-top: -2px;
-  padding-top: 6px;
   text-shadow: none;
-}
-// Home link
-.navbar .nav > .home > a,
-.navbar .nav > .home > span {
-  background-image: url('@{imgPath}main.png');
-  background-position: 0 -130px;
-  height: 20px;
-  text-indent: -100000px;
-  width: 21px;
-  &:hover,
-  &.active {
-    background: @navbarLinkBackgroundHover url('@{imgPath}main.png') no-repeat -40px -130px;
-  }
 }
 
 // Dividers (basically a vertical hr)
@@ -267,9 +252,9 @@ html* .navbar .nav > li > a.dropdown-toggle{
   width: 1px;
   margin: 0 -1px 0 0;
   overflow: hidden;
-  background-color: @greenDark;
+  background-color: @grayDark;
   border-right: 1px solid @navbarBackgroundHighlight;
-  .opacity(15);
+  .opacity(50);
 }
 
 // Secondary (floated right) nav in topbar
@@ -313,9 +298,9 @@ html* .navbar .nav > li > a.dropdown-toggle{
   .border-radius(0);
   margin-left: -1px;
   margin-top: 0;
-  border: 1px solid @green;
+  border: 1px solid @gray;
   border-top: 0;
-  top: @navbarHeight;
+  top: @navbarHeight + 1px;
   &:before {
     /*content: '';
     display: inline-block;
@@ -357,11 +342,11 @@ html* .navbar .nav > li > a.dropdown-toggle{
 // Dropdown toggle caret
 .navbar .nav li.dropdown .dropdown-toggle .caret,
 .navbar .nav li.dropdown.open .caret {
-  border-top-color: @white;
-  border-bottom-color: @white;
+  border-top-color: @grayDarker;
+  border-bottom-color: @grayDarker;
   .opacity(100);
   border-width: 3px;
-  margin: 10px 0 0 5px;
+  margin: 9px 0 0 5px;
   *margin: 8px 0 0 5px;
 }
 .navbar .nav li.dropdown.active .caret {
